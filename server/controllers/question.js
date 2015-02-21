@@ -1,5 +1,5 @@
 "use strict"
-var Question = require("../models/questions").question;
+var Question = require("../models/questions");
 
 
 function create(author, question){
@@ -17,23 +17,11 @@ function create(author, question){
 
 
 function populate(){
-//    var all_questions;
-
-//   all_questions = Question.populate(all_questions,{path : "question"},function (err, user) {
-//   console.log(user);
-// });
-//   console.log("allQ " + all_questions[0]);
-//   return all_questions;
- //console.log("pop");
-  // Question.find().populate("question").exec(function(err,results){
-  //   console.log(results);
-  // });
-// var query = Question.find({name : "pepa"},null,function (err, docs) {
-//   console.log("kjsdlk");
-//   console.log(docs);
-// });
-// query.exec();
-};
+  var query = Question.find().exec();
+  query.then(function(res){
+    console.log(res);
+  })
+}
 
 module.exports = {
   create : create,

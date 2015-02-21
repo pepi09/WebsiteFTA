@@ -41,7 +41,7 @@ $("#logbtn").on("click",function(){
     //put image
   }
   else{
-    $("#log_in").append("Type username and password!");
+    $("#log_in").append("<p>Type username and password!<p>");
   }
 });
 
@@ -55,8 +55,9 @@ $("#register").on("click", function(){
 });
 
 $("#regbtn").on("click", function(){
-  var username = $("#username").val(),
-      password = $("#password").val();
+  var username = $("#regName").val(),
+      password = $("#regPass").val();
+
   if(username !== "" && password !==""){
     var shaObj = new jsSHA(password, "TEXT"),
         hashedPass = shaObj.getHash("SHA-1", "HEX");
@@ -64,8 +65,13 @@ $("#regbtn").on("click", function(){
   socket.emit("register",{
     name : username,
     password : password
-  });
-}
+  })
+
+  $("#reg").hide();
+  }
+  else{
+    $("#reg").append("<p>Type username and password!<p>");
+  }
 });
 
 

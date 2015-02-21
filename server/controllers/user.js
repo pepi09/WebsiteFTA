@@ -1,6 +1,6 @@
-var User = require("../models/users").user;
+var User = require("../models/users");
 
-var create = function(name, pass){
+function create(name, pass){
   var user = new User({
     name : name,
     password : pass
@@ -9,8 +9,14 @@ var create = function(name, pass){
   user.save();
 }
 
+function validate(name, pass){
+  var promise = User.find({name : name, password : pass}).exec();
+  return promise;
+};
+
 module.exports = {
   create : create,
+  validate : validate,
 }
 
 

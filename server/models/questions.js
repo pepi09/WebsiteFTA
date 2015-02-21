@@ -4,6 +4,8 @@ var mongoose = require("mongoose"),
     questionSchema = new Schema({
       author : String,
       body : String,
-    });
+    }),
 
-exports.question = mongoose.model("question", questionSchema);
+    Question = mongoose.model("question", questionSchema);
+
+module.exports = Question
