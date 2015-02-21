@@ -21,11 +21,11 @@ else {
 });
 
 $("#enter").on("click",function(){
-  console.log("log in");
+  $("#homeImg").hide();
   $("#log_in").show();
-})
+});
 
-$("#log").on("click",function(){
+$("#logbtn").on("click",function(){
   var username = $("#username").val(),
       password = $("#password").val();
   if(username !== "" && password !==""){
@@ -45,8 +45,29 @@ $("#log").on("click",function(){
   }
 });
 
+socket.on("validate",function(data){
+  $("log_in").append("Login successful!");
+});
+
+$("#register").on("click", function(){
+  $("#homeImg").hide();
+  $("#reg").show();
+});
+
+$("#regbtn").on("click", function(){
+  var username = $("#username").val(),
+      password = $("#password").val();
+  if(username !== "" && password !==""){
+    var shaObj = new jsSHA(password, "TEXT"),
+        hashedPass = shaObj.getHash("SHA-1", "HEX");
+
+  socket.emit("register",{
+    name : username,
+    password : password
+  });
+}
+});
 
 
-
-})
+});
 
