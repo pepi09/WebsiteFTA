@@ -74,6 +74,10 @@ $("#regbtn").on("click", function(){
   }
 });
 
+$("#contacts").on("click",function(){
+  $("#homeImg").hide();
+  $("#contactsImg").show();
+})
 
 });
 
