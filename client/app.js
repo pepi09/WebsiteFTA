@@ -93,7 +93,7 @@ $("#send").on("click", function(){
 
 $("#allQ").on("click", function(){
   hide();
-  socket.emit("show_all"{});
+  socket.emit("show_all",{});
 });
 
 function hide(){
