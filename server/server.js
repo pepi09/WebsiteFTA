@@ -4,33 +4,41 @@ var
     io = require("socket.io")(http),
     Question = require("./controllers/question.js"),
     User = require("./controllers/user.js"),
-    all_questions = [];
+    mongoose = require("mongoose");
 
 io.on("connection", function(socket){
   console.log("connected");
 
-socket.on("question", function(data){
-     Question.create(data.author, data.question);
-});
-
-socket.on("login", function(data){
-  var validate = User.validate(data.name, data.password);
-  validate.then(function(result){
-    console.log(result);
-    socket.emit("validate", validate);
+  socket.on("question", function(data){
+       Question.create(data.author, data.question);
   });
+
+  socket.on("login", function(data){
+    User.validate(data.name, data.password, function(result){
+      console.log("RES " + result.name);
+      if (result.name !== undefined){
+        socket.emit("validate", "successful");
+      }
+      else {
+        socket.emit("validate", "unsuccessful");
+      }
+    });
+  });
+
+  socket.on("register", function(data){
+    User.create(data.name, data.password);
+  });
+
+  socket.on("show_all", function(data){
+    Question.populate(function(questions){
+      socket.emit("all_questions", questions);
+    });
+  });
+
 });
 
-socket.on("register", function(data){
-  User.create(data.name, data.password);
-});
 
-socket.on("show_all", function(data){
-  Question.populate();
-});
 
-})
 http.listen(3000, function(){
-  console.log('listening on localhost:3000');
-});
-
+    console.log('listening on localhost:3000');
+  });

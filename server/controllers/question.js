@@ -1,26 +1,40 @@
 "use strict"
-var Question = require("../models/questions");
-
+var Question = require("../models/questions"),
+    mongoose = require("mongoose"),
+    url = "mongodb://localhost/forum"
 
 function create(author, question){
   var q = new Question({
     author : author,
     body : question
   });
-  q.save(function(err){
-    if (err) {
-      console.log("Error saving question! " + err);
-    }
-  })
+  mongoose.connect(url);
+  var db = mongoose.connection;
+    db.once('open', function (callback) {
+
+    q.save(function(err,saved){
+      if (err) {
+        console.log("Error saving question! " + err);
+      }
+      db.close();
+    })
+  });
   console.log("New question asked!");
 }
 
 
-function populate(){
-  var query = Question.find().exec();
-  query.then(function(res){
-    console.log(res);
+function populate(cb){
+  mongoose.connect(url);
+  var db = mongoose.connection;
+  db.once('open', function (callback) {
+
+    Question.find({}, function(err, questions){
+      cb(questions);
+      db.close();
+
+    });
   })
+
 }
 
 module.exports = {

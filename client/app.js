@@ -27,7 +27,8 @@ $("#logbtn").on("click",function(){
 });
 
 socket.on("validate",function(data){
-  $("log_in").append("Login successful!");
+  $(".msg").show();
+  $(".msg").append("Login " + data + "!");
 });
 
 $("#register").on("click", function(){
@@ -92,12 +93,18 @@ $("#send").on("click", function(){
 });
 
 $("#allQ").on("click", function(){
-  hide();
+  $(".img, .field").hide();
   socket.emit("show_all",{});
 });
 
+socket.on("all_questions",function(data){
+  data.forEach(function(question){
+    $("#forumBtns").append(question.author + " : " + question.body + "<br>");
+  })
+})
+
 function hide(){
-  $(".img, .field, .btn").hide();
+  $(".img, .field, .btn, .msg").hide();
 }
 });
 
