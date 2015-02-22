@@ -1,6 +1,6 @@
 "use strict"
 $(function(){
-var socket = new io("http://localhost:3000");
+var socket = new io("http://localhost:8000");
 
 $("#enter").on("click",function(){
   hide();
@@ -26,11 +26,6 @@ $("#logbtn").on("click",function(){
   }
 });
 
-socket.on("validate",function(data){
-  $(".msg").show();
-  $(".msg").append("Login " + data + "!");
-});
-
 $("#register").on("click", function(){
   hide();
   $("#reg").show();
@@ -48,8 +43,8 @@ $("#regbtn").on("click", function(){
     name : username,
     password : password
   })
-
-  $("#reg").hide();
+    $("#regName").val("");
+    $("#regPass").val("");
   }
   else{
     $("#reg").append("<p>Type username and password!<p>");
@@ -98,9 +93,25 @@ $("#allQ").on("click", function(){
 });
 
 socket.on("all_questions",function(data){
+  $("#qbody").text("");
   data.forEach(function(question){
-    $("#forumBtns").append(question.author + " : " + question.body + "<br>");
+    $("#qbody").append(question.author + " : " + question.body + "<br>");
   })
+})
+
+socket.on("validate",function(data){
+  $(".msg").show();
+  $(".msg").text("Login " + data + "!");
+});
+
+socket.on("reg_complete", function(data){
+  $(".msg").show();
+  $(".msg").text(data);
+})
+
+socket.on("new_question", function(data){
+  console.log("must refresh");
+  $("#allQ").trigger("click");
 })
 
 function hide(){

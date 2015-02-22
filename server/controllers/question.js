@@ -3,7 +3,7 @@ var Question = require("../models/questions"),
     mongoose = require("mongoose"),
     url = "mongodb://localhost/forum"
 
-function create(author, question){
+function create(author, question, cb){
   var q = new Question({
     author : author,
     body : question
@@ -16,6 +16,7 @@ function create(author, question){
       if (err) {
         console.log("Error saving question! " + err);
       }
+      cb();
       db.close();
     })
   });

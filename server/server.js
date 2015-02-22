@@ -10,12 +10,14 @@ io.on("connection", function(socket){
   console.log("connected");
 
   socket.on("question", function(data){
-       Question.create(data.author, data.question);
+       Question.create(data.author, data.question, function(){
+          console.log("before refresh");
+          socket.emit("new_question",{});
+       });
   });
 
   socket.on("login", function(data){
     User.validate(data.name, data.password, function(result){
-      console.log("RES " + result.name);
       if (result.name !== undefined){
         socket.emit("validate", "successful");
       }
@@ -26,7 +28,9 @@ io.on("connection", function(socket){
   });
 
   socket.on("register", function(data){
-    User.create(data.name, data.password);
+    User.create(data.name, data.password, function(result){
+      socket.emit("reg_complete", result);
+    });
   });
 
   socket.on("show_all", function(data){
@@ -39,6 +43,6 @@ io.on("connection", function(socket){
 
 
 
-http.listen(3000, function(){
-    console.log('listening on localhost:3000');
+http.listen(8000, function(){
+    console.log('listening on localhost:8000');
   });
