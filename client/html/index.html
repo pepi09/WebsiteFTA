@@ -24,9 +24,9 @@ a:hover {
 a:active {
 	color: #B11837;
 }
-table {
+/*table {
     border:1px solid black;
-}
+}*/
 </style>
 </head>
 
@@ -37,9 +37,8 @@ table {
           <th width="332" height="96" bgcolor="#FFFFFF" scope="col">
             <img id="logo" src="./logo_fta.jpg"></div>
           </th>
-          <th width="165" bgcolor="#FFFFFF" scope="col"><h1><strong><a href="aboutus.html" target="mainFrame">About
-              us</a></strong></h1></th>
-          <th width="203" bgcolor="#FFFFFF" scope="col"><h1><strong>Forum</strong></h1></th>
+          <th id="aboutus" width="165" bgcolor="#FFFFFF" scope="col"><h1><strong>About us</a></strong></h1></th>
+          <th id="forum" width="203" bgcolor="#FFFFFF" scope="col"><h1><strong>Forum</strong></h1></th>
           <th id="contacts" width="148" bgcolor="#FFFFFF" scope="col"><h1><strong>Contacts</a></strong></h1></th>
           <th width="203" bgcolor="#FFFFFF" scope="col" align="top">
               <button id="enter" align="right">Log in</button>
@@ -50,10 +49,11 @@ table {
 <table width="866" height="450" border="0" align="center">
     <tr>
       <th id="main">
-        <image id="homeImg" src="./home.png" width="866" height="450"> </image>
-        <image id="contactsImg" src="./contacts.png" width="866" height="450"> </image>
+        <image class="img" id="homeImg" src="./home.png" width="866" height="450"> </image>
+        <image class="img" id="contactsImg" src="./contacts.png" width="866" height="450" hidden></image>
+        <image class="img" id="aboutusImg" src="./aboutus.png" width="866" height="450" hidden></image>
 
-        <div id="log_in" hidden>
+        <div id="log_in" class="field" hidden>
         <text> Username </text>
         <input id="username"></input>
         <text> Password </text>
@@ -61,13 +61,29 @@ table {
         <button id="logbtn" align="right">Log in</button>
         </div>
 
-        <div id="reg" hidden>
+        <div id="reg" class="field" hidden>
         <text> Username </text>
         <input id="regName"></input>
         <text> Password </text>
         <input id="regPass"></input>
         <button id="regbtn" align="right">Register</button>
         </div>
+
+        <div id="quest" class="field" hidden>
+        <text> Your name </text>
+        <input id="author"></input>
+        <text> Your question </text>
+        <input id="question"></input>
+        <button id="send" align="right">Send</button>
+        </div>
+
+        <div id="forumBtns" class="btn" hidden>
+          <button id="newQ" align="center" hight="500">Ask a question</button>
+          <br>
+          <br>
+          <button id="allQ" align="center">View all questions</button>
+        </div>
+
 
       </th>
     </tr>

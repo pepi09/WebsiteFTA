@@ -1,27 +1,9 @@
 "use strict"
 $(function(){
-
-  var socket = new io("http://localhost:3000");
-
-$("#question-btn").on("click",function(){
-  var author = $("#author").val(),
-      question = $("#question").val();
-if (author !== "" && question !== ""){
-  socket.emit("question", {
-    author : author,
-    question : question
-  })
-  $("#question-field").append(author + ":  " + question);
-  $("#author").val("");
-  $("#question").val("");
-}
-else {
-  $("#question-field").append("Please fill all fields!");
-}
-});
+var socket = new io("http://localhost:3000");
 
 $("#enter").on("click",function(){
-  $("#homeImg").hide();
+  hide();
   $("#log_in").show();
 });
 
@@ -38,7 +20,6 @@ $("#logbtn").on("click",function(){
     })
 
     $("#log_in").hide();
-    //put image
   }
   else{
     $("#log_in").append("<p>Type username and password!<p>");
@@ -50,7 +31,7 @@ socket.on("validate",function(data){
 });
 
 $("#register").on("click", function(){
-  $("#homeImg").hide();
+  hide();
   $("#reg").show();
 });
 
@@ -75,9 +56,48 @@ $("#regbtn").on("click", function(){
 });
 
 $("#contacts").on("click",function(){
-  $("#homeImg").hide();
+  hide();
   $("#contactsImg").show();
 })
 
+$("#aboutus").on("click",function(){
+  hide();
+  $("#aboutusImg").show();
+})
+
+$("#forum").on("click",function(){
+  hide();
+  $("#forumBtns").show();
+})
+
+$("#newQ").on("click", function(){
+  hide();
+  $("#quest").show();
+});
+
+$("#send").on("click", function(){
+  var author = $("#author").val(),
+      question = $("#question").val();
+  if (author !== "" && question !== ""){
+    socket.emit("question", {
+      author : author,
+      question : question
+    })
+  }
+  else{
+    $("#quest").append("<p>Write a question!<p>");
+  }
+  $("#author").val("");
+  $("#question").val("");
+});
+
+$("#allQ").on("click", function(){
+  hide();
+  socket.emit("show_all"{});
+});
+
+function hide(){
+  $(".img, .field, .btn").hide();
+}
 });
 

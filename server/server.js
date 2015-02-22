@@ -9,8 +9,6 @@ var
 io.on("connection", function(socket){
   console.log("connected");
 
-Question.populate();
-
 socket.on("question", function(data){
      Question.create(data.author, data.question);
 });
@@ -27,7 +25,9 @@ socket.on("register", function(data){
   User.create(data.name, data.password);
 });
 
-
+socket.on("show_all", function(data){
+  Question.populate();
+});
 
 })
 http.listen(3000, function(){
