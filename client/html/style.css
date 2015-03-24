@@ -1,0 +1,24 @@
+body,td,th {
+    color: #B11837;
+}
+body {
+    background-color: #FFFFFF;
+}
+a:link {
+    color: #B11837;
+}
+a:visited {
+    color: #B11837;
+}
+a:hover {
+    color: #B11837;
+}
+a:active {
+    color: #B11837;
+}
+a {
+      text-decoration:none;
+   }
+/*table {
+    border:1px solid black;
+}*/
