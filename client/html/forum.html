@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css">
+<title>FTA</title>
+</head>
+
+
+<body bgcolor="white">
+  <table width="866" height="100" border="0" align="center">
+         <tr>
+          <th width="332" height="96" bgcolor="#FFFFFF" scope="col">
+            <a href="index.html">
+            <img id="logo" src="./logo_fta.jpg"></div>
+            </a>
+          </th>
+
+          <th id="aboutus" width="165" bgcolor="#FFFFFF" scope="col"><a href="about.html"><h1><strong>About us</strong></h1></a></th>
+
+          <th id="forum" width="203" bgcolor="#FFFFFF" scope="col"><a href="forum.html"> <h1><strong>Forum</strong> </h1></a></th>
+
+          <th id="contacts" width="148" bgcolor="#FFFFFF" scope="col"><a href="contacts.html"><h1><strong>Contacts</strong></h1></a></th>
+
+          <th width="203" bgcolor="#FFFFFF" scope="col" align="top">
+              <button id="enter" align="right">Log in</button>
+              <button id="register" align="right">Register</button></th>
+        </tr>
+      </table>
+<br>
+<table width="866" height="450" border="0" align="center">
+    <tr>
+      <th id="main">
+        <div id="quest" class="field" hidden>
+        <text> Your name </text>
+        <input id="author"></input>
+        <text> Your question </text>
+        <input id="question"></input>
+        <button id="send" align="right">Send</button>
+        </div>
+
+        <div id="forumBtns" class="btn" hidden>
+          <button id="newQ" align="center" hight="500">Ask a question</button>
+          <br>
+          <br>
+          <button id="allQ" align="center">View all questions</button>
+
+        <script id="qTitles" type="text/x-handlebars-template">
+          <table>
+            <tr>
+             <input class="title-place" id={{ input_id }} value="{{ name }}">
+             <button id="view-btn" id={{ button_id }} disabled> View answers </button>
+            </tr>
+          <table>
+          </script>
+        </div>
+
+
+      </th>
+    </tr>
+</table>
+
+<script src="../bower_components/socket.io-client/socket.io.js"></script>
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/jsSHA/src/sha.js"></script>
+<script src="../bower_components/handlebars/handlebars.js"></script>
+</body>
+<script src="../forum.js"></script>
+</html>

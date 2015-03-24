@@ -1,6 +1,11 @@
 "use strict"
 $(function(){
-var socket = new io("http://localhost:8000");
+var
+  socket = new io("http://localhost:8000");
+  // source = $("#template").html(),
+  // template = Handlebars.compile(source),
+  // context = {},
+  // html;
 
 $("#enter").on("click",function(){
   hide();
@@ -61,43 +66,12 @@ $("#aboutus").on("click",function(){
   $("#aboutusImg").show();
 })
 
-$("#forum").on("click",function(){
-  hide();
-  $("#forumBtns").show();
-})
-
-$("#newQ").on("click", function(){
-  hide();
-  $("#quest").show();
-});
-
-$("#send").on("click", function(){
-  var author = $("#author").val(),
-      question = $("#question").val();
-  if (author !== "" && question !== ""){
-    socket.emit("question", {
-      author : author,
-      question : question
-    })
-  }
-  else{
-    $("#quest").append("<p>Write a question!<p>");
-  }
-  $("#author").val("");
-  $("#question").val("");
-});
-
-$("#allQ").on("click", function(){
-  $(".img, .field").hide();
-  socket.emit("show_all",{});
-});
-
-socket.on("all_questions",function(data){
-  $("#qbody").text("");
-  data.forEach(function(question){
-    $("#qbody").append(question.author + " : " + question.body + "<br>");
-  })
-})
+// $("#forum").on("click",function(){
+//   hide();
+//   context = { main_body : };
+//    html = template(context);
+//   $("#main").append(html);
+// })
 
 socket.on("validate",function(data){
   $(".msg").show();
@@ -107,11 +81,6 @@ socket.on("validate",function(data){
 socket.on("reg_complete", function(data){
   $(".msg").show();
   $(".msg").text(data);
-})
-
-socket.on("new_question", function(data){
-  console.log("must refresh");
-  $("#allQ").trigger("click");
 })
 
 function hide(){

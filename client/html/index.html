@@ -4,30 +4,8 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css">
 <title>FTA</title>
-<style type="text/css">
-body,td,th {
-	color: #B11837;
-}
-body {
-	background-color: #FFFFFF;
-}
-a:link {
-	color: #B11837;
-}
-a:visited {
-	color: #B11837;
-}
-a:hover {
-	color: #B11837;
-}
-a:active {
-	color: #B11837;
-}
-/*table {
-    border:1px solid black;
-}*/
-</style>
 </head>
 
 
@@ -35,67 +13,45 @@ a:active {
   <table width="866" height="100" border="0" align="center">
         <tr>
           <th width="332" height="96" bgcolor="#FFFFFF" scope="col">
+            <a href="index.html">
             <img id="logo" src="./logo_fta.jpg"></div>
+            </a>
           </th>
-          <th id="aboutus" width="165" bgcolor="#FFFFFF" scope="col"><h1><strong>About us</a></strong></h1></th>
-          <th id="forum" width="203" bgcolor="#FFFFFF" scope="col"><h1><strong>Forum</strong></h1></th>
-          <th id="contacts" width="148" bgcolor="#FFFFFF" scope="col"><h1><strong>Contacts</a></strong></h1></th>
+
+          <th id="aboutus" width="165" bgcolor="#FFFFFF" scope="col"><a href="about.html"><h1><strong>About us</strong></h1></a></th>
+
+          <th id="forum" width="203" bgcolor="#FFFFFF" scope="col"><a href="forum.html"> <h1><strong>Forum</strong> </h1></a></th>
+
+          <th id="contacts" width="148" bgcolor="#FFFFFF" scope="col"><a href="contacts.html"><h1><strong>Contacts</strong></h1></a></th>
+
           <th width="203" bgcolor="#FFFFFF" scope="col" align="top">
               <button id="enter" align="right">Log in</button>
               <button id="register" align="right">Register</button></th>
         </tr>
       </table>
 <br>
+
+
 <table width="866" height="450" border="0" align="center">
     <tr>
       <th id="main">
         <image class="img" id="homeImg" src="./home.png" width="866" height="450"> </image>
-        <image class="img" id="contactsImg" src="./contacts.png" width="866" height="450" hidden></image>
-        <image class="img" id="aboutusImg" src="./aboutus.png" width="866" height="450" hidden></image>
+<script id="template" type="text/x-handlebars-template">
 
-        <div class="msg"></div>
-
-        <div id="log_in" class="field" hidden>
-        <text> Username </text>
-        <input id="username"></input>
-        <text> Password </text>
-        <input id="password"></input>
-        <button id="logbtn" align="right">Log in</button>
-        </div>
-
-        <div id="reg" class="field" hidden>
-        <text> Username </text>
-        <input id="regName"></input>
-        <text> Password </text>
-        <input id="regPass"></input>
-        <button id="regbtn" align="right">Register</button>
-        </div>
-
-        <div id="quest" class="field" hidden>
-        <text> Your name </text>
-        <input id="author"></input>
-        <text> Your question </text>
-        <input id="question"></input>
-        <button id="send" align="right">Send</button>
-        </div>
-
-        <div id="forumBtns" class="btn" hidden>
-          <button id="newQ" align="center" hight="500">Ask a question</button>
-          <br>
-          <br>
-          <button id="allQ" align="center">View all questions</button>
-          <div id="qbody"></div>
-        </div>
-
-
+      <div class="main_field">
+        {{ main_body }}
+      </div>
+</script>
       </th>
     </tr>
 </table>
 
+
 <script src="../bower_components/socket.io-client/socket.io.js"></script>
 <script src="../bower_components/jquery/dist/jquery.js"></script>
 <script src="../bower_components/jsSHA/src/sha.js"></script>
-<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/handlebars/handlebars.js"></script>
+
 </body>
 <script src="../app.js"></script>
 </html>
